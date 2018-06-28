@@ -1,5 +1,5 @@
 //Window load
 $(window).load(function() {
-	//Hide prage loader
+	//Скрыть загрузчик страницы
 	$(".page-loader").fadeOut();
 });

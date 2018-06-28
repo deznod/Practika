@@ -18,26 +18,13 @@ $(document).ready(function() {
 	  	mobile:false
 	});
 	
-	/********************
-		- Countdown -
-	********************/
-	$('.countdown').countdown({
-		date:"Dec 25, 2017 20:30:00",
-		render:function(data) {
-			$(this.el).html(
-				"<div>"+this.leadingZeros(data.days, 3)+"<span>days</span></div>"+
-				"<div>"+this.leadingZeros(data.hours, 2)+"<span>hours</span></div>"+
-				"<div>"+this.leadingZeros(data.min, 2)+"<span>minutes</span></div>"+
-				"<div>"+this.leadingZeros(data.sec, 2)+"<span>seconds</span></div>"
-			);
-		}
-	});
+
 	
 	/***********************
 	    - Contact form -
 	***********************/
     $('#submit').click(function() {   	
-		//Validate and process form 
+		//Подтвердить и обработать форму
     	$("#ajax-contact-form").validate({             
 			rules:{			
 				name:{
@@ -72,12 +59,12 @@ $(document).ready(function() {
 
             //Submit form
            	submitHandler:function(form) {
-		 		//Create variables from the form
+		 		//Создание переменных из формы
 		 		var name = $('input#name').val(); 
 		 		var email = $('input#email').val();  
 		 		var message = $('textarea#message').val();
 
-               	//Create variables that will be sent in a URL string to contact.php
+               	//Создайте переменные, которые будут отправлены в строке URL-адреса в contact.php
               	var dataString = '&name='+name+'&email='+email+'&message='+message;
         		
 				$.ajax({
@@ -127,7 +114,7 @@ $(document).ready(function() {
 	*************************/
     $(".player").mb_YTPlayer();
     
-   	//Player controls
+   	//Player контроль
     $('#play').on("click", function(){
     	$('.player').playYTP();
 	});
@@ -160,32 +147,32 @@ $(window).load(function() {
 	- Google Maps -
 **********************/
 function googleMaps() {
-	//Variables
+	//переменные
 	var title = arrMap.title;
 	var latitude = arrMap.latitude;
 	var longitude = arrMap.longitude;
 	var zoom = arrMap.zoom;
 	
-	//Marker icon
+	//Маркер icon
 	var marker_url = arrMap.marker;
 	
-	//Main color
+	//Главный цвет
 	var main_color = arrMap.color;
 	
-	//Saturation and brightness
+	//Насыщенность и яркость
 	var saturation_value = -20;
 	var brightness_value = 5;
 
-	//Map style
+	//Стиль карты
 	var style= [ 
-		{//Set saturation for the labels on the map
+		{//Установите насыщенность для меток на карте
 			elementType:"labels",
 			stylers:[
 				{saturation:saturation_value},
 			]
 		}, 
 		
-		{//Poi stands for point of interest - don't show these labels on the map 
+		{ 
 			featureType:"poi",
 			elementType:"labels",
 			stylers:[
@@ -193,7 +180,7 @@ function googleMaps() {
 			]
 		},
 		
-		{//Hide highways labels on the map
+		{//Скрыть ярлыки шоссе на карте
 			featureType:'road.highway',
 			elementType:'labels',
 			stylers:[
@@ -201,7 +188,7 @@ function googleMaps() {
 			]
 		}, 
 	
-		{//Hide local road labels on the map
+		{//Скрыть местные дорожные знаки на карте
 			featureType:"road.local", 
 			elementType:"labels.icon", 
 			stylers:[
@@ -209,7 +196,7 @@ function googleMaps() {
 			] 
 		},
 		
-		{//Hide arterial road labels on the map
+		{
 			featureType:"road.arterial", 
 			elementType:"labels.icon", 
 			stylers:[
@@ -217,7 +204,7 @@ function googleMaps() {
 			] 
 		},
 	
-		{//Hide road labels on the map
+		{//Скрыть дорожные метки на карте
 			featureType:"road",
 			elementType:"geometry.stroke",
 			stylers:[
@@ -225,7 +212,7 @@ function googleMaps() {
 			]
 		},
 		
-		{//Style different elements on the map
+		{//Стиль различных элементов на карте
 			featureType:"transit", 
 			elementType:"geometry.fill", 
 			stylers:[
@@ -357,7 +344,7 @@ function googleMaps() {
 		}
 	];
 	
-	//Set google map options
+	//Настройка параметров карты google
 	var map_options = {
 		center:new google.maps.LatLng(latitude, longitude),
 		zoom:zoom,
@@ -370,10 +357,10 @@ function googleMaps() {
 		styles:style
 	}
 	
-	//Inizialize the map
+	//Инициализация карты
 	var map = new google.maps.Map(document.getElementById('google-container'), map_options);
  
-	//Add a custom marker to the map        
+	//Добавить пользовательский маркер на карту        
 	var marker = new google.maps.Marker({
 		position:new google.maps.LatLng(latitude, longitude),
 		map:map,
@@ -388,7 +375,7 @@ function googleMaps() {
 		map.setCenter(center); 
 	});
 
-	//Add custom buttons for the zoom-in/zoom-out on the map
+	//Добавление пользовательских кнопок для увеличения / уменьшения масштаба на карте
 	if (arrMap.zoomControlDiv==undefined) {		
 		function customZoomControl(controlDiv, map) {
 			//Grap the zoom elements from the DOM and insert them in the map 
@@ -413,7 +400,7 @@ function googleMaps() {
 		arrMap.zoomControlDiv = zoomControlDiv;
 	}
 		
-	//Insert the zoom div on the top left of the map
+	//Вставить масштабируемый div в левом верхнем углу карты
 	map.controls[google.maps.ControlPosition.LEFT_TOP].push(arrMap.zoomControlDiv);
 }
 
