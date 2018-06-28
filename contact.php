@@ -68,7 +68,7 @@
 		$objmail->IsSMTP();
 		$objmail->SMTPAuth = true;
 		$objmail->Host = "mail.yourdomain.com";
-		$objmail->Port = 587;	//You can remove that line if you don't need to set the SMTP port
+		$objmail->Port = 587;	//Вы можете удалить эту строку, если вам не нужно устанавливать SMTP-порт
 		$objmail->Username = "example@yourdomain.com";
 		$objmail->Password = "email_address_password";
 		*/
